@@ -879,31 +879,77 @@ public class pedidos extends javax.swing.JFrame {
 
     private void IngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarActionPerformed
         // TODO add your handling code here:
-        int dni = Integer.parseInt(nrodni.getText());
-        int nrotelef = Integer.parseInt(telef.getText());
+        int dni,nrotelef;
+        
+        if(nrodni.getText().isEmpty()){
+            dni=0;
+        }else {
+            dni = Integer.parseInt(nrodni.getText());
+        }
+        
+        if(telef.getText().isEmpty()){
+            nrotelef=0;
+        }else {
+            nrotelef = Integer.parseInt(telef.getText());
+        }
+        
+        
         String cliente = cliente_name.getText();
         String mesa_nro,direc;
         if(tipo_entrega.getSelectedItem()=="Mesa"){
             mesa_nro = nromesa.getText();
-            direc = "";
+            direc = "-";
         }else{
-            mesa_nro = "";
+            mesa_nro = "-";
             direc = direccion.getText();
             
         }
         
-        if(tipo_entrega.getSelectedItem()=="Mesa"){
+        
+        if(cliente.isEmpty()||mesa_nro.isEmpty()||direc.isEmpty()){
+            JOptionPane.showMessageDialog(null, "algun campo esta vacio \nIntentelo nuevamente");
+            nrodni.setText(null);
+            telef.setText(null);
+            cliente_name.setText(null);
+            nromesa.setText(null);
+            direccion.setText(null);
+            qty1.setText("0");
+            qty2.setText("0");
+            qty3.setText("0");
+            qty4.setText("0");
+            qty5.setText("0");
+            producto1.setSelectedIndex(0);
+            producto2.setSelectedIndex(0);
+            producto3.setSelectedIndex(0);
+            producto4.setSelectedIndex(0);
+            producto5.setSelectedIndex(0);
+        }else{
+            
+            String clientestr=metodos.buscarCliente(cliente);
+            if(clientestr.equals("cliente no encontrado")){
+                metodos.ingresarCliente(dni, nrotelef, cliente);
+                System.out.println("Cliente Ingresado"); 
+            }
+            
+            
+            
+            if(tipo_entrega.getSelectedItem()=="Mesa"){
             mesa.insertar(dni, nrotelef,cliente, mesa_nro, direc, precio_total);
             modelo_mesa.addElement(dni);
             Lista_mesa.setModel(modelo_mesa);
-        }else{
+            }else{
             delivery.insertar(dni, nrotelef,cliente, mesa_nro, direc, precio_total);
             modelo_delivery.addElement(dni);
             Lista_delivery.setModel(modelo_delivery);
             
+            }
+            
+            JOptionPane.showMessageDialog(null, "Se ingreso a la cola "+tipo_entrega.getSelectedItem());
         }
         
-        JOptionPane.showMessageDialog(null, "Se ingreso a la cola "+tipo_entrega.getSelectedItem());
+        
+        
+        
         
         nrodni.setText(null);
         telef.setText(null);

@@ -54,7 +54,7 @@ public class metodos {
             if(resultado.next()){
                 busqueda_precio = resultado.getFloat("product_price");
             }
-            
+            coneccion3.close();
         }catch(SQLException e){
             System.out.println(e);
         }
@@ -78,5 +78,44 @@ public class metodos {
             System.out.println(e);
         }
     }
+    
+    public static String buscarCliente(String cliente){
+        String busqueda_cliente = null;
+        Connection coneccion5 = null;
+        
+        try{
+            coneccion5 = basedatos.conectar();
+            String sentencia_buscar_usuario = ("SELECT clientes_name FROM clientes WHERE clientes_name = '" + cliente + "'");
+            sentencia_preparada = coneccion5.prepareStatement(sentencia_buscar_usuario);
+            resultado = sentencia_preparada.executeQuery();
+            if (resultado.next()) {
+                busqueda_cliente = "cliente encontrado";
+            } else {
+                busqueda_cliente = "cliente no encontrado";
+            }
+            coneccion5.close();
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+        return busqueda_cliente;
+    }
+    
+    public static void ingresarCliente(int dni,int telef,String nombre){
+        Connection coneccion6 = null;
+        
+        try{
+            coneccion6 = basedatos.conectar();
+            String sentencia_ingresar_registro = ("INSERT INTO clientes "
+                    + "(clientes_id, clientes_telf, clientes_name) "
+                    + "VALUES ('"+dni+"', '"+telef+"', '"+nombre+"')");
+            st = coneccion6.createStatement();
+            st.executeUpdate(sentencia_ingresar_registro);
+            coneccion6.close();
+            
+        }catch(SQLException e){
+            System.out.println(e);
+        }
+    }
+    
     
 }
