@@ -164,6 +164,7 @@ public class pedidos extends javax.swing.JFrame {
         CalcTotal = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         cliente_name = new javax.swing.JTextField();
+        atras = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -329,6 +330,13 @@ public class pedidos extends javax.swing.JFrame {
 
         jLabel2.setText("Nombre:");
 
+        atras.setText("Atras");
+        atras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                atrasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -400,6 +408,8 @@ public class pedidos extends javax.swing.JFrame {
                                 .addGap(104, 104, 104))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(atras, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Ingresar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(48, 48, 48))))))
         );
@@ -412,7 +422,6 @@ public class pedidos extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
                     .addComponent(cliente_name, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -470,7 +479,9 @@ public class pedidos extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(preciototal)
                                 .addGap(18, 18, 18)
-                                .addComponent(Ingresar))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(Ingresar)
+                                    .addComponent(atras)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(31, 31, 31)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -970,6 +981,14 @@ public class pedidos extends javax.swing.JFrame {
         
     }//GEN-LAST:event_entregarmesaActionPerformed
 
+    private void atrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atrasActionPerformed
+        // TODO add your handling code here:
+        menu menu1 = new menu();
+        menu1.setVisible(true);
+        menu1.setLocationRelativeTo(null);
+        this.dispose();
+    }//GEN-LAST:event_atrasActionPerformed
+
     
     
     
@@ -1020,6 +1039,7 @@ public class pedidos extends javax.swing.JFrame {
     private javax.swing.JToggleButton Ingresar;
     private javax.swing.JList<String> Lista_delivery;
     private javax.swing.JList<String> Lista_mesa;
+    private javax.swing.JButton atras;
     private javax.swing.JTextField cliente_name;
     private javax.swing.JTextField direccion;
     private javax.swing.JTextField direccion_deliv;
